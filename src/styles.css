@@ -1,0 +1,76 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+:root {
+  --columns: 15;
+}
+
+@media screen and (min-width: 53em) {
+  :root {
+    --columns: 30;
+  }
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body.main-wrap {
+  /* 👇 This is what is giving cursor color, along with blending mode  */
+  --cursor-bg: #fff;
+  --cursor-blend-mode: difference;
+
+  --color-text: #000310;
+  --color-bg: #fffcf0;
+
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-family: "Neue Montreal", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.subtitle {
+  padding-top: 1rem;
+  font-size: calc(1vw + 4px);
+  width: 100%;
+  text-align: center;
+}
+
+.heading {
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 0;
+  padding-top: 5rem;
+  font-size: calc(5.12821vw + 40.76923px);
+}
+
+.cursor {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 99;
+  mix-blend-mode: var(--cursor-blend-mode);
+  --size: calc(100vw / var(--columns));
+}
+
+.cursor__inner {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), var(--size));
+}
+
+.cursor__inner-box {
+  width: var(--size);
+  height: var(--size);
+  background: var(--cursor-bg);
+  opacity: 0;
+}

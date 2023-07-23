@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gooey Cursor from Lama Lama and Lorenzo Dal Dosso</title>
+    <meta name="author" content="Deepak Gangwar" />
+    <script>
+      document.documentElement.className = "js";
+      var supportsCssVars = function () {
+        var e,
+          t = document.createElement("style");
+        return (
+          (t.innerHTML = "root: { --tmp-var: bold; }"),
+          document.head.appendChild(t),
+          (e = !!(
+            window.CSS &&
+            window.CSS.supports &&
+            window.CSS.supports("font-weight", "var(--tmp-var)")
+          )),
+          t.parentNode.removeChild(t),
+          e
+        );
+      };
+      supportsCssVars() ||
+        alert(
+          "Please view this demo in a modern browser that supports CSS Variables."
+        );
+    </script>
+  </head>
+  <body class="main-wrap">
+    <h1 class="heading">Lama Lama</h1>
+    <div class="subtitle">
+      <span>Lorenzo Dal Dosso SVG Goo</span>
+    </div>
+    <div class="cursor">
+      <div class="cursor__inner">
+        <!-- cursor__inner-box elements come here -->
+      </div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.1"
+        style="display: none;"
+      >
+        <defs>
+          <filter id="gooey">
+            <feGaussianBlur
+              in="SourceGraphic"
+              result="blur"
+              stdDeviation="3.2"
+            />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+              result="gooey"
+            />
+            <!-- values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -7" -->
+            <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+          </filter>
+        </defs>
+      </svg>
+    </div>
+
+    <script type="module" src="src/index.js"></script>
+  </body>
+</html>
